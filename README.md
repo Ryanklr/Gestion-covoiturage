@@ -251,4 +251,3 @@ Le routage est géré par `frontController.php` qui :
 - Cette application nécessite un serveur local (WAMP/XAMPP/LAMP) pour fonctionner
 - La base de données doit être créée manuellement via phpMyAdmin avant la première utilisation
 - Les mots de passe MySQL par défaut peuvent varier selon votre installation WAMP
-
