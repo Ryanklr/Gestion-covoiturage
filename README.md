@@ -1,4 +1,4 @@
-# TD7 - Application de Covoiturage
+# Application de Covoiturage
 
 Application PHP de gestion de covoiturage développée dans le cadre du TD7. Cette application permet de gérer des voitures, des utilisateurs et des trajets de covoiturage.
 
