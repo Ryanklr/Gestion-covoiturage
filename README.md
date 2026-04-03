@@ -26,7 +26,7 @@ Avant de commencer, assurez-vous d'avoir installé :
 
 Placez le projet dans le dossier `www` de WAMP :
 ```
-C:\wamp64\www\DEVWEB\TD7_Ryan_BACHATENE_FI2A
+C:\wamp64\www\DEVWEB\Gestion-covoiturage
 ```
 
 ### 2. Démarrer WAMP
@@ -116,7 +116,7 @@ Si votre configuration MySQL est différente, modifiez ces valeurs dans le fichi
 2. Ouvrez votre navigateur web
 3. Accédez à l'URL suivante :
    ```
-   http://localhost/DEVWEB/TD7_Ryan_BACHATENE_FI2A/web/frontController.php
+   http://localhost/DEVWEB/Gestion-covoiturage/web/frontController.php
    ```
 
 ### Navigation dans l'application
@@ -130,22 +130,22 @@ L'application utilise un système de routage basé sur les paramètres URL :
 
 - Liste des voitures :
   ```
-  http://localhost/DEVWEB/TD7_Ryan_BACHATENE_FI2A/web/frontController.php?controller=voiture&action=readAll
+  http://localhost/DEVWEB/Gestion-covoiturage/web/frontController.php?controller=voiture&action=readAll
   ```
 
 - Créer une voiture :
   ```
-  http://localhost/DEVWEB/TD7_Ryan_BACHATENE_FI2A/web/frontController.php?controller=voiture&action=create
+  http://localhost/DEVWEB/Gestion-covoiturage/web/frontController.php?controller=voiture&action=create
   ```
 
 - Liste des utilisateurs :
   ```
-  http://localhost/DEVWEB/TD7_Ryan_BACHATENE_FI2A/web/frontController.php?controller=utilisateur&action=readAll
+  http://localhost/DEVWEB/Gestion-covoiturage/web/frontController.php?controller=utilisateur&action=readAll
   ```
 
 - Liste des trajets :
   ```
-  http://localhost/DEVWEB/TD7_Ryan_BACHATENE_FI2A/web/frontController.php?controller=trajet&action=readAll
+  http://localhost/DEVWEB/Gestion-covoiturage/web/frontController.php?controller=trajet&action=readAll
   ```
 
 #### Contrôleurs disponibles :
@@ -168,7 +168,7 @@ L'application utilise un système de routage basé sur les paramètres URL :
 ## 📁 Structure du projet
 
 ```
-TD7_Ryan_BACHATENE_FI2A/
+Gestion-covoiturage/
 ├── src/
 │   ├── Config/
 │   │   └── Conf.php                    # Configuration de la base de données
@@ -244,7 +244,7 @@ Le routage est géré par `frontController.php` qui :
 
 ## 👤 Auteur
 
-**Ryan BACHATENE** - TD7 FI2A
+**Ryan BACHATENE** - Gestion-covoiturage
 
 ## 📝 Notes
 
