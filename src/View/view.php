@@ -8,7 +8,7 @@
 use App\Covoiturage\Lib\MessageFlash;
 
  echo $pagetitle; ?></title>
-      <link rel="stylesheet" href="../web/assets/css/style.css">
+      <link rel="stylesheet" href="../web/assets/css/style.css?v=20260925-2">
    </head>
    <body>
       <header>

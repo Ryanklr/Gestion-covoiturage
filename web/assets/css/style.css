@@ -1,16 +1,19 @@
 :root {
-  --primary-color: #000000;
-  --primary-dark: #3b3b3d;
-  --secondary-color: #b8780a;
-  --danger-color: #e65757;
-  --success-color: #10b981;
-  --background: #f8fafc;
-  --surface: #ffffff;
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --border-color: #e5e7eb;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --bg-deep: #07111f;
+  --bg-surface: rgba(12, 20, 35, 0.75);
+  --bg-panel: rgba(15, 23, 42, 0.82);
+  --bg-card: rgba(15, 23, 42, 0.9);
+  --primary: #7c3aed;
+  --primary-strong: #5b21b6;
+  --secondary: #f59e0b;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --text: #e2e8f0;
+  --text-strong: #f8fafc;
+  --muted: #94a3b8;
+  --line: rgba(148, 163, 184, 0.25);
+  --shadow: 0 20px 45px rgba(2, 6, 23, 0.4);
+  --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.18);
 }
 
 * {
@@ -21,25 +24,58 @@
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
-  background-color: var(--background);
-  color: var(--text-primary);
-  line-height: 1.6;
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
+  isolation: isolate;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at top, rgba(124, 58, 237, 0.16), transparent 35%),
+    linear-gradient(180deg, #020817 0%, #0f172a 50%, #111827 100%);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../css/img/personne-qui-commande-taxi-aeroport-ligne_74855-15496.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.12;
+  filter: saturate(1.2) contrast(1.15);
+  z-index: -2;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(2, 8, 23, 0.2), rgba(2, 8, 23, 0.72));
+  z-index: -1;
+  pointer-events: none;
 }
 
 header {
-  background: var(--surface);
-  box-shadow: var(--shadow);
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 30;
+  backdrop-filter: blur(16px);
+  background: rgba(2, 8, 23, 0.68);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.2);
 }
 
 .navbar {
@@ -47,105 +83,224 @@ header {
 }
 
 .navbar-container {
-  max-width: 1200px;
+  width: min(1200px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 0 20px;
+  min-height: 78px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  gap: 18px;
 }
 
 .navbar-logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary-color);
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-strong);
+}
+
+.navbar-logo::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a78bfa, #f59e0b);
+  box-shadow: 0 0 18px rgba(167, 139, 250, 0.8);
 }
 
 .navbar-menu {
   list-style: none;
   display: flex;
-  gap: 0;
   align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
 .nav-link {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  color: var(--text-primary);
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(148, 163, 184, 0.06);
+  border: 1px solid transparent;
   text-decoration: none;
-  padding: 12px 18px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  border-bottom: 3px solid transparent;
-  height: 100%;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .nav-link:hover {
-  color: var(--primary-color);
-  background-color: rgba(37, 99, 235, 0.05);
-  border-bottom-color: var(--primary-color);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(59, 130, 246, 0.18));
+  border-color: rgba(167, 139, 250, 0.45);
+  color: var(--text-strong);
+  text-decoration: none;
+  transform: translateY(-1px);
 }
 
 .nav-pref {
-  margin-left: auto;
-  color: var(--secondary-color);
+  min-width: 46px;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  color: #fff;
+  box-shadow: 0 12px 25px rgba(245, 158, 11, 0.35);
 }
 
 .nav-pref:hover {
-  color: var(--primary-dark);
-  border-bottom-color: var(--secondary-color);
-  background-color: rgba(245, 158, 11, 0.05);
+  background: linear-gradient(135deg, #fbbf24, #fb7185);
+  color: #fff;
 }
 
 main.container {
   flex: 1;
-  max-width: 1200px;
-  width: 100%;
+  width: min(1200px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 44px 0 56px;
+}
+
+main.container > h1,
+main.container > h2 {
+  color: var(--text-strong);
+  line-height: 1.2;
+  margin-bottom: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
 }
 
 main.container > h1 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: var(--text-primary);
-  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3rem);
 }
 
 main.container > h2 {
-  font-size: 1.5rem;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  color: var(--text-primary);
-  font-weight: 600;
+  font-size: clamp(1.35rem, 2.3vw, 2.1rem);
+  margin-top: 26px;
 }
 
 main.container > p {
-  margin-bottom: 15px;
-  color: var(--text-secondary);
-  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 18px;
+  font-size: 1.04rem;
+}
+
+.data-panel {
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+.data-table thead th {
+  background: rgba(124, 58, 237, 0.18);
+  color: var(--text-strong);
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 18px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+.data-table tbody td {
+  padding: 18px 20px;
+  color: var(--text);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.data-table tbody tr:hover {
+  background: rgba(148, 163, 184, 0.04);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  color: #dbeafe;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.action-link:hover {
+  text-decoration: none;
+}
+
+.action-link.danger {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(248, 113, 113, 0.3);
+  color: #fecaca;
+}
+
+.action-link.warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(251, 191, 36, 0.35);
+  color: #fde68a;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 20px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7c3aed, #3b82f6);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 16px 30px rgba(59, 130, 246, 0.22);
+}
+
+.btn-primary:hover {
+  text-decoration: none;
+  filter: brightness(1.05);
 }
 
 .alert {
-  padding: 15px 20px;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  font-weight: 500;
   display: flex;
   align-items: center;
   gap: 10px;
-  animation: slideIn 0.3s ease;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  font-weight: 600;
+  border-left: 5px solid transparent;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(8px);
+  animation: slideIn 0.28s ease;
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
@@ -154,45 +309,56 @@ main.container > p {
 }
 
 .alert-success {
-  background-color: rgba(16, 185, 129, 0.1);
-  border-left: 4px solid var(--success-color);
-  color: var(--success-color);
+  background: rgba(34, 197, 94, 0.08);
+  border-left-color: var(--success);
+  color: #bbf7d0;
 }
 
 .alert-error,
 .alert-danger {
-  background-color: rgba(239, 68, 68, 0.1);
-  border-left: 4px solid var(--danger-color);
-  color: var(--danger-color);
+  background: rgba(239, 68, 68, 0.08);
+  border-left-color: var(--danger);
+  color: #fecaca;
 }
 
 .alert-info {
-  background-color: rgba(37, 99, 235, 0.1);
-  border-left: 4px solid var(--primary-color);
-  color: var(--primary-color);
+  background: rgba(124, 58, 237, 0.08);
+  border-left-color: var(--primary);
+  color: #ddd6fe;
 }
 
 form {
-  background: var(--surface);
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  max-width: 500px;
+  width: min(560px, 100%);
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 26px;
+  padding: 30px 28px;
+  box-shadow: 0 25px 50px rgba(2, 6, 23, 0.32);
+  backdrop-filter: blur(14px);
+}
+
+form fieldset {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 22px 18px 14px;
+}
+
+form legend {
+  color: var(--text-strong);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0 10px;
 }
 
 form label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 15px;
-  cursor: pointer;
-  font-weight: 500;
-  color: var(--text-primary);
-  transition: color 0.2s ease;
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-strong);
+  font-weight: 600;
 }
 
-form label:hover {
-  color: var(--primary-color);
+form p {
+  margin: 0;
 }
 
 form input[type="text"],
@@ -203,14 +369,29 @@ form input[type="number"],
 form textarea,
 form select {
   width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 15px;
-  border: 2px solid var(--border-color);
-  border-radius: 6px;
-  font-family: inherit;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.98);
+  color: var(--text-strong);
   font-size: 1rem;
-  color: var(--text-primary);
-  transition: all 0.3s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+form input::placeholder {
+  color: var(--muted);
+}
+
+form input,
+form select,
+form textarea {
+  background: rgba(15, 23, 42, 0.7) !important;
 }
 
 form input[type="text"]:focus,
@@ -221,251 +402,235 @@ form input[type="number"]:focus,
 form textarea:focus,
 form select:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: rgba(167, 139, 250, 0.8);
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.18);
 }
 
 form input[type="radio"],
 form input[type="checkbox"] {
-  cursor: pointer;
   width: 18px;
   height: 18px;
-  accent-color: var(--primary-color);
+  accent-color: var(--primary);
+  margin-right: 10px;
+  transform: translateY(2px);
 }
 
 button,
 form button[type="submit"],
+form input[type="submit"],
 a.btn {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: var(--primary-color);
-  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
   border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), #3b82f6);
+  color: #fff;
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   text-decoration: none;
-  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(59, 130, 246, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 button:hover,
 form button[type="submit"]:hover,
+form input[type="submit"]:hover,
 a.btn:hover {
-  background-color: var(--primary-dark);
-  box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
+  box-shadow: 0 18px 30px rgba(124, 58, 237, 0.35);
+  filter: brightness(1.04);
+  text-decoration: none;
 }
 
 button:active,
-form button[type="submit"]:active {
+form button[type="submit"]:active,
+form input[type="submit"]:active {
   transform: translateY(0);
+}
+
+form input[type="submit"] {
+  min-width: 180px;
+  width: auto;
+  padding: 14px 28px;
+  font-size: 1rem;
+  margin-top: 10px;
 }
 
 button.btn-danger,
 a.btn-danger {
-  background-color: var(--danger-color);
-}
-
-button.btn-danger:hover,
-a.btn-danger:hover {
-  background-color: #dc2626;
+  background: linear-gradient(135deg, var(--danger), #f97316);
 }
 
 button.btn-secondary,
 a.btn-secondary {
-  background-color: var(--secondary-color);
-}
-
-button.btn-secondary:hover,
-a.btn-secondary:hover {
-  background-color: #d97706;
+  background: linear-gradient(135deg, var(--secondary), #fb7185);
 }
 
 table {
   width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  background: var(--surface);
-  border-radius: 8px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid var(--line);
+  border-radius: 20px;
   overflow: hidden;
   box-shadow: var(--shadow);
 }
 
 table thead {
-  background-color: var(--primary-color);
-  color: white;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.8), rgba(59, 130, 246, 0.8));
+  color: var(--text-strong);
 }
 
 table th,
 table td {
-  padding: 16px;
+  padding: 16px 18px;
   text-align: left;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--line);
+}
+
+table tbody tr {
+  transition: background 0.2s ease;
+}
+
+table tbody tr:nth-child(even) {
+  background: rgba(148, 163, 184, 0.03);
 }
 
 table tbody tr:hover {
-  background-color: rgba(37, 99, 235, 0.05);
+  background: rgba(124, 58, 237, 0.08);
 }
 
 table tbody tr:last-child td {
   border-bottom: none;
 }
 
-body::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url('../css/img/personne-qui-commande-taxi-aeroport-ligne_74855-15496.avif');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.2; /* <-- ajuste la transparence ici */
-  z-index: -1; /* pour que le contenu du body reste au-dessus */
-}
-
 ul,
 ol {
-  margin-left: 20px;
-  margin-bottom: 20px;
+  margin-left: 22px;
+  margin-bottom: 18px;
 }
 
 li {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   line-height: 1.8;
+  color: var(--muted);
 }
 
 a {
-  color: var(--primary-color);
+  color: #c4b5fd;
   text-decoration: none;
-  transition: color 0.2s ease;
-  font-weight: 500;
+  transition: color 0.2s ease, opacity 0.2s ease;
+  font-weight: 600;
 }
 
 a:hover {
-  color: var(--primary-dark);
+  color: #ddd6fe;
   text-decoration: underline;
 }
 
 a.btn-link {
   display: inline-block;
   padding: 8px 16px;
-  background-color: rgba(37, 99, 235, 0.1);
-  border-radius: 4px;
-  margin-right: 8px;
-  margin-bottom: 8px;
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(167, 139, 250, 0.34);
+  margin: 0 8px 8px 0;
 }
 
 a.btn-link:hover {
-  background-color: rgba(37, 99, 235, 0.2);
+  background: rgba(124, 58, 237, 0.18);
   text-decoration: none;
 }
 
 a.btn-link-danger {
-  background-color: rgba(239, 68, 68, 0.1);
-  color: var(--danger-color);
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(248, 113, 113, 0.4);
+  color: #fecaca;
 }
 
 a.btn-link-danger:hover {
-  background-color: rgba(239, 68, 68, 0.2);
+  background: rgba(239, 68, 68, 0.18);
 }
 
 footer {
-  background: linear-gradient(135deg, #c5c5c7 0%, #737476 100%);
-  color: white;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(2, 8, 23, 0.96));
+  color: var(--text-strong);
   text-align: center;
-  padding: 25px 20px;
-  margin-top: auto;
-  font-size: 0.95rem;
-  font-weight: 500;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  padding: 24px 20px;
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -10px 25px rgba(2, 6, 23, 0.18);
 }
 
 footer p {
   margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
 }
 
 @media (max-width: 768px) {
   .navbar-container {
     flex-wrap: wrap;
-    height: auto;
-    padding: 10px 20px;
+    justify-content: center;
+    padding: 12px 0;
   }
 
   .navbar-logo {
     width: 100%;
-    padding: 10px 0;
-    font-size: 1.2rem;
+    justify-content: center;
+    padding-top: 6px;
   }
 
   .navbar-menu {
     width: 100%;
-    gap: 0;
+    justify-content: center;
   }
 
   .nav-link {
-    flex: 1;
-    text-align: center;
-    border-bottom: none;
-    border-right: 1px solid var(--border-color);
-    padding: 10px 8px;
-    font-size: 0.9rem;
-  }
-
-  .nav-link:last-child {
-    border-right: none;
-  }
-
-  .nav-pref {
-    margin-left: 0;
+    padding: 9px 12px;
+    font-size: 0.88rem;
   }
 
   main.container {
-    padding: 20px 15px;
-  }
-
-  main.container > h1 {
-    font-size: 1.5rem;
+    padding-top: 28px;
   }
 
   form {
-    padding: 20px;
-    max-width: 100%;
+    padding: 22px 18px;
   }
 
   table th,
   table td {
-    padding: 10px;
+    padding: 12px 10px;
     font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
   .navbar-container {
-    padding: 10px 10px;
+    width: min(100% - 18px, 1200px);
   }
 
-  .navbar-logo {
-    font-size: 1rem;
+  .nav-link,
+  button,
+  form button[type="submit"],
+  a.btn {
+    width: 100%;
   }
 
-  .nav-link {
-    padding: 8px 4px;
-    font-size: 0.8rem;
-  }
-
-  main.container {
-    padding: 15px 10px;
+  .navbar-menu {
+    gap: 8px;
   }
 
   form {
-    padding: 15px;
+    padding: 16px 14px;
   }
 
-  button,
-  a.btn {
-    width: 100%;
-    padding: 10px;
+  main.container {
+    width: min(100% - 18px, 1200px);
   }
 }
